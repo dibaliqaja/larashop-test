@@ -42,26 +42,57 @@
                     </ul>
                 </form>
                 <ul class="navbar-nav navbar-right">
-                    @if (Auth::user())
-                        <li class="dropdown"><a href="#" data-toggle="dropdown"
-                                class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                                <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
-                                <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a href="/" class="dropdown-item">Shopping</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
+                    <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+                            class="nav-link notification-toggle nav-link-lg {{ auth()->user()->unreadNotifications->count() == 0 ? '' : 'beep' }}"><i class="far fa-bell"></i></a>
+                        <div class="dropdown-menu dropdown-list dropdown-menu-right">
+                            <div class="dropdown-header">Notifications
+                                <div class="float-right">
+                                    <a href="{{ route('mark.as.read') }}">Mark All As Read</a>
+                                </div>
                             </div>
-                        </li>
-                    @else
-                        <li class="nav-item"><a href="{{ url('login') }}" class="nav-link">Login</a></li>
-                    @endif
+                            <div class="dropdown-list-content dropdown-list-icons">
+                                @foreach (auth()->user()->unreadNotifications as $notification)
+                                    <div class="dropdown-item dropdown-item-unread">
+                                        <div class="dropdown-item-icon bg-success text-white">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <div class="dropdown-item-desc">
+                                            <a href="{{ route('orders.edit', [$notification->data['order_id']]) }}" class="font-weight-600">{{ $notification->data['body'] }}</a>
+                                            <div class="time">{{ $notification->created_at->diffForHumans() }}</div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                @foreach (auth()->user()->readNotifications as $notification)
+                                    <div class="dropdown-item">
+                                        <div class="dropdown-item-icon bg-success text-white">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <div class="dropdown-item-desc">
+                                            <a href="{{ route('orders.edit', [$notification->data['order_id']]) }}" class="font-weight-600">{{ $notification->data['body'] }}</a>
+                                            <div class="time">{{ $notification->created_at->diffForHumans() }}</div>
+                                            <a href="{{ route('delete.notif', ['id' => $notification->id]) }}" ><i class="fa fa-trash fa-xs float-right"></i></a>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </li>
+                    <li class="dropdown"><a href="#" data-toggle="dropdown"
+                            class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                            <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
+                            <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="/" class="dropdown-item">Shopping</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+                        </div>
+                    </li>
                 </ul>
             </nav>
 

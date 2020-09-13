@@ -19,14 +19,26 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::resource('products', 'ProductController');
-Route::resource('orders', 'OrderController');
-
 Route::get('/', 'BuyerController@front')->name('front');
 Route::get('detail/{id}', 'BuyerController@detail')->name('buyers.detail');
 
-Route::group(['middleware' => ['verified']], function () {
+Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::resource('products', 'ProductController');
+    Route::resource('orders', 'OrderController');
+
+    Route::get('markAsRead', function() {
+        auth()->user()->unreadNotifications->markAsRead();
+        return redirect()->back();
+    })->name('mark.as.read');
+
+    Route::get('delete-notif/{id}', function($id) {
+        auth()->user()->readNotifications
+            ->where('id', $id)
+            ->first()->delete();
+        return redirect()->back();
+    })->name('delete.notif');
 
     Route::post('cart/{id}', 'BuyerController@addToCart')->name('addto.cart');
     Route::get('cart', 'BuyerController@cart')->name('cart');

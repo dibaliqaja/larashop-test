@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Product;
 use App\ProductOrder;
+use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 
 class BuyerController extends Controller
@@ -38,7 +40,7 @@ class BuyerController extends Controller
                 $order                  = new Order();
                 $order->user_id         = $user_id;
                 $order->total_price     = 0;
-                $order->invoice_number  = 'T'.date('y').date('m').str_pad($product->id,3,'0',STR_PAD_LEFT).$order->id;
+                $order->invoice_number  = 'T'.mt_rand(00000, 99999).date('y').date('m').str_pad($product->id,3,'0',STR_PAD_LEFT);
                 $order->status          = "CART";
                 $order->save();
             }
@@ -116,10 +118,26 @@ class BuyerController extends Controller
             'address' => 'required|min:5'
         ]);
 
-        $order = Order::where('user_id', Auth::user()->id)->where('status', 'CART')->first();
+        $userOrder = Auth::user();
+
+        $order = Order::where('user_id', $userOrder->id)->where('status', 'CART')->first();
         $order->status = "PENDING";
         $order->address = $request->get('address');
         $order->update();
+
+        $admin = User::where('role', 'ADMIN')->first();
+
+        $details = [
+            'body' => "Pesanan telah masuk dari
+                        Nama : $userOrder->name,
+                        Email : $userOrder->email,
+                        Invoice : $order->invoice_number,
+                        Total Price : $order->total_price,
+                        Status : $order->status",
+            'order_id' => $order->id
+        ];
+
+        Notification::send($admin, new \App\Notifications\OrdersNotification($details));
 
         return redirect('ordered/'. $order->id)->with('status', "Checkout, $order->invoice Berhasil Dibuat. Transfer sebesar Rp. " .number_format($order->total_price, 2, ',', '.') . " ke Rekening BRI: 12131313131 atas nama Maman Jaya. Terima kasih sudah membeli.");
     }
@@ -143,7 +161,7 @@ class BuyerController extends Controller
     {
         $this->validate($request, [
             'address' => 'required|min:5',
-            'payslip' => 'required|file|mimes:png,jpg,jpeg|size:max:500'
+            'payslip' => 'required|file|mimes:png,jpg,jpeg'
         ]);
 
         $order = Order::findOrFail($id);
@@ -155,6 +173,21 @@ class BuyerController extends Controller
         }
         $order->address = $request->get('address');
         $order->save();
+
+        $userOrder = Auth::user();
+        $admin = User::where('role', 'ADMIN')->first();
+
+        $details = [
+            'body' => "Konfirmasi Bukti Transfer dari
+                        Nama : $userOrder->name,
+                        Email : $userOrder->email,
+                        Invoice : $order->invoice_number,
+                        Total Price : $order->total_price,
+                        Status : $order->status",
+            'order_id' => $order->id
+        ];
+
+        Notification::send($admin, new \App\Notifications\OrdersNotification($details));
 
         return redirect()->back()->with('status', 'Terima kasih atas konfirmasi transfernya. Bukti akan kami cek terlebih dahulu ya kak.');
     }

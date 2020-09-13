@@ -13,8 +13,12 @@
                     <strong>{{ $message }}</strong>
                 </div>
             @endif
-            <h3>Checkout</h3>
-            <p align="right">Order date : {{ $order->created_at }}</p>
+            <h3>Order Detail</h3>
+            <p></p>
+            <p align="right">
+                Invoice Number : {{ $order->invoice_number }}<br>
+                Order date : {{ $order->created_at }}
+            </p>
             <table class="table table-invoice">
                 <thead>
                     <th>No</th>
