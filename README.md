@@ -98,6 +98,37 @@ Register yourself with your data for customer
 
 ### Screenshots
 
+![image](https://raw.githubusercontent.com/dibaliqaja/larashop-test/master/screenshots/Screenshot%20from%202020-09-14%2003-54-51.png)
+
+![image](https://raw.githubusercontent.com/dibaliqaja/larashop-test/master/screenshots/Screenshot%20from%202020-09-14%2003-56-00.png)
+
+![image](https://raw.githubusercontent.com/dibaliqaja/larashop-test/master/screenshots/Screenshot%20from%202020-09-14%2003-56-59.png)
+
+![image](https://raw.githubusercontent.com/dibaliqaja/larashop-test/master/screenshots/Screenshot%20from%202020-09-14%2003-57-35.png)
+
+![image](https://raw.githubusercontent.com/dibaliqaja/larashop-test/master/screenshots/Screenshot%20from%202020-09-14%2003-58-10.png)
+
+![image](https://raw.githubusercontent.com/dibaliqaja/larashop-test/master/screenshots/Screenshot%20from%202020-09-14%2003-58-38.png)
+
+![image](https://raw.githubusercontent.com/dibaliqaja/larashop-test/master/screenshots/Screenshot%20from%202020-09-14%2003-59-07.png)
+
+![image](https://raw.githubusercontent.com/dibaliqaja/larashop-test/master/screenshots/Screenshot%20from%202020-09-14%2003-59-37.png)
+
+![image](https://raw.githubusercontent.com/dibaliqaja/larashop-test/master/screenshots/Screenshot%20from%202020-09-14%2004-01-50.png)
+
+![image](https://raw.githubusercontent.com/dibaliqaja/larashop-test/master/screenshots/Screenshot%20from%202020-09-14%2004-02-24.png)
+
+![image](https://raw.githubusercontent.com/dibaliqaja/larashop-test/master/screenshots/Screenshot%20from%202020-09-14%2004-02-33.png)
+
+![image](https://raw.githubusercontent.com/dibaliqaja/larashop-test/master/screenshots/Screenshot%20from%202020-09-14%2004-02-54.png)
+
+![image](https://raw.githubusercontent.com/dibaliqaja/larashop-test/master/screenshots/Screenshot%20from%202020-09-14%2004-03-12.png)
+
+![image](https://raw.githubusercontent.com/dibaliqaja/larashop-test/master/screenshots/Screenshot%20from%202020-09-14%2004-03-54.png)
+
+![image](https://raw.githubusercontent.com/dibaliqaja/larashop-test/master/screenshots/Screenshot%20from%202020-09-14%2004-04-12.png)
+
+![image](https://raw.githubusercontent.com/dibaliqaja/larashop-test/master/screenshots/Screenshot%20from%202020-09-14%2004-04-45.png)
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
