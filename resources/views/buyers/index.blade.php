@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12 mb-4">
+            <div class="col-md-12 mb-6">
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button>
@@ -12,7 +12,7 @@
                 @endif
             </div>
             @foreach ($products as $product)
-                <div class="col-md-4">
+                <div class="col-3 m-3">
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>

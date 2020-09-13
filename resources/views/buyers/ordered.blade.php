@@ -26,7 +26,7 @@
                         <tr>
                             <td>{{ $no++ }}</td>
                             <td>{{ $item->invoice_number }}</td>
-                            <td>{{ $item->created_at }}</td>
+                            <td>{{ $item->updated_at }}</td>
                             <td>
                                 @if ($item->status == "PENDING")
                                     <span class="badge badge-dark">{{ $item->status }}</span>
@@ -42,8 +42,12 @@
                                     No Image
                                 @endif
                             </td>
-                            <td>
-                                <a href="{{ route('ordered.detail', [$item->id]) }}" class="btn btn-primary">Detail</a>
+                            <td width="12%">
+                                @if ($item->status == "PENDING")
+                                    <a href="{{ route('ordered.detail', [$item->id]) }}" class="btn btn-sm btn-primary">Detail</a>
+                                @elseif ($item->status == "DELIVERED")
+                                    Produk sedang dikirim ke alamat tujuan.
+                                @endif
                             </td>
                         </tr>
                     @endforeach

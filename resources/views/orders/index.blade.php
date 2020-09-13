@@ -53,7 +53,7 @@
                         @endif
                     </td>
                     <td>{{ $order->user->name }}<br><small>{{ $order->user->email }}</small></td>
-                    <td>{{ $order->created_at }}</td>
+                    <td>{{ $order->updated_at }}</td>
                     <td>Rp. {{ number_format($order->total_price, 2, ',', '.') }}</td>
                     <td>
                         @if ($order->payslip)

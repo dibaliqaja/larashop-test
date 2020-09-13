@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
             <label for="created_at">Order date</label>
-            <input type="text" class="form-control" value="{{ $order->created_at }}" disabled>
+            <input type="text" class="form-control" value="{{ $order->updated_at }}" disabled>
         </div>
         <div class="form-group">
             <label for="address">Address</label>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderSummary;
 use App\Order;
 use App\Product;
 use App\ProductOrder;
@@ -9,6 +10,7 @@ use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 
@@ -137,9 +139,23 @@ class BuyerController extends Controller
             'order_id' => $order->id
         ];
 
+        $order_summary = [
+            'id' => $order->id,
+            'name' => $userOrder->name,
+            'email' => $userOrder->email,
+            'invoice' => $order->invoice_number,
+            'total' => $order->total_price,
+            'status' => $order->status,
+            'date' => $order->updated_at,
+        ];
+
         Notification::send($admin, new \App\Notifications\OrdersNotification($details));
 
-        return redirect('ordered/'. $order->id)->with('status', "Checkout, $order->invoice Berhasil Dibuat. Transfer sebesar Rp. " .number_format($order->total_price, 2, ',', '.') . " ke Rekening BRI: 12131313131 atas nama Maman Jaya. Terima kasih sudah membeli.");
+        $product_order = ProductOrder::where('order_id', $order->id)->get();
+
+        Mail::send(new OrderSummary($order_summary, $product_order));
+
+        return redirect('ordered/'. $order->id)->with('status', "Pesanan, $order->invoice Berhasil Dibuat. Transfer sebesar Rp. " .number_format($order->total_price, 2, ',', '.') . " ke Rekening BRI: 12131313131 atas nama Maman Jaya. Terima kasih sudah membeli.");
     }
 
     public function ordered()
@@ -189,6 +205,6 @@ class BuyerController extends Controller
 
         Notification::send($admin, new \App\Notifications\OrdersNotification($details));
 
-        return redirect()->back()->with('status', 'Terima kasih atas konfirmasi transfernya. Bukti akan kami cek terlebih dahulu ya kak.');
+        return redirect()->back()->with('status', 'Terima kasih atas konfirmasi bukti transfernya. Bukti akan kami cek terlebih dahulu sebelum produk dikirim.');
     }
 }

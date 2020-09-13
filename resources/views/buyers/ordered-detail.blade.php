@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="col-md-12">
-            <a href="{{ url('/ordered') }}" class="btn btn-primary">Back</a>
+            <a href="{{ url('/ordered') }}" class="btn btn-primary"></i>Order History</a>
         </div>
         <div class="col-md-12">
             <br>
@@ -17,7 +17,7 @@
             <p></p>
             <p align="right">
                 Invoice Number : {{ $order->invoice_number }}<br>
-                Order date : {{ $order->created_at }}
+                Order date : {{ $order->updated_at }}
             </p>
             <table class="table table-invoice">
                 <thead>
@@ -48,12 +48,13 @@
             </table>
             @if ($order->status == "PENDING")
                 Order Status : <span class="badge badge-dark">{{ $order->status }}</span>
-                <br>
+                <br><br>
                 <form action="{{ route('upload', $order->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="address"><b>Address</b></label>
+                        <label for="address"><b>Alamat Pengiriman</b></label>
                         <textarea style="width: 500px" name="address" id="address" class="form-control @error('address') is-invalid @enderror" required>{{ old('address', $order->address) }}</textarea>
+                        <span class="text-small font-italic">Alamat pengiriman dapat diubah sebelum status pesanan Delivered</span>
                         @error('address')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -63,7 +64,7 @@
                     <div class="form-group">
                         <label for=""><b>Payslip</b></label>
                         <input type="file" class="form-control-file" name="payslip">
-                        <span class="text-small font-italic">Upload payslip for order confirmation</span>
+                        <span class="text-small font-italic">Upload bukti pembayaran disini.</span>
                         <div class="invalid-feddback text-danger">
                             {{ $errors->first('payslip') }}
                         </div>
