@@ -25,9 +25,21 @@ class ProductSeeder extends Seeder
         ]);
 
         Product::create([
-            'name' => 'Rak Lemari',
-            'desc' => 'Ini adalah rak lemari, digunakan sebagai penyimpan barang di rumah',
-            'price' => 125000
+            'name' => 'Kursi Belajar',
+            'desc' => 'Ini adalah kursi belajar, digunakan sebagai dudukan seseorang yang lagi belajar',
+            'price' => 25000
+        ]);
+
+        Product::create([
+            'name' => 'Tas Ransel',
+            'desc' => 'Ini adalah tas ransel, digunakan sebagai penyimpan barang bawaan',
+            'price' => 25000
+        ]);
+
+        Product::create([
+            'name' => 'Tas Ransel',
+            'desc' => 'Ini adalah tas ransel, digunakan sebagai penyimpan barang bawaan',
+            'price' => 25000
         ]);
 
         Product::create([

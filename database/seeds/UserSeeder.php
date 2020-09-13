@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name' => 'Administrator',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@larashop.net',
             'password' => bcrypt('11111111'),
             'role' => 'ADMIN',
             'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
 
         User::create([
             'name' => 'Adi Gumilang',
-            'email' => 'adi@gmail.com',
+            'email' => 'adi@larashop.net',
             'password' => bcrypt('11111111'),
             'role' => 'CUSTOMER',
             'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),

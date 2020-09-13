@@ -1,3 +1,104 @@
+## Larashop Test
+Larashop test is a simple project for an online shop website that is created to fulfill the initial coding test with a given requirement.
+
+### Features
+> Fitur Customer yang harus dipenuhi
+- Bisa melakukan registrasi pada website tsb, dengan mengisi alamat email dan password 
+✅
+- Password harus minimal 8 karakter random (alphanumeric) 
+✅
+- Setelah proses registrasi, sistem akan mengirimkan email verifikasi akun ke alamat email yg didaftarkan. Customer klik link yg terdapat pada email dan akun akan terverifikasi. 
+✅
+- Bisa melakukan reset password. Dilakukan dengan mengisi alamat email yg didaftarkan sebelumnya. Jika tidak terdaftar, maka tampilkan pesan “Alamat email tidak terdaftar”. Jika terdaftar, maka sistem akan mengirimkan email instruksi reset password berisi link untuk melakukan reset password. Saat klik link tsb akan membuka window baru berisi form utk mengisi password baru dan retype password baru. Setelah diisi, maka password baru dapat digunakan untuk login, dan password lama tidak dapat digunakan untuk login. 
+✅
+- Bisa melihat detail produk dan menambahkan ke keranjang belanja. 
+✅
+- Saat checkout, bisa mengisi alamat tujuan pengiriman dan ketika klik tombol “Pesan” maka tampil informasi bahwa pesanan berhasil, dan sistem akan otomatis mengirimkan email ringkasan transaksi ke customer dan ke admin. 
+✅
+- Customer dapat upload foto bukti konfirmasi pembayaran. 
+✅
+
+> Fitur Admin yang harus dipenuhi
+- Bisa login ke CMS menggunakan alamat email dan password. 
+✅
+- Password harus minimal 8 karakter random (alphanumerik). 
+✅
+- Bisa kelola (CRUD) Produk, dengan data: Nama produk, deskripsi produk, harga. 
+✅
+- Bisa menerima notifikasi saat ada order masuk. Notifikasi cukup di admin tanpa harusmengirimkan email ke admin. 
+✅
+- Bisa melihat foto2 bukti pembayaran yg sudah diupload. 
+✅
+- Bisa melihat detail order dan bisa mengganti status dari “Pending” menjadi “Delivered”. 
+✅
+
+### Requirements
+- PHP >= 7.2.5
+- BCMath PHP Extension
+- Ctype PHP Extension
+- Fileinfo PHP extension
+- JSON PHP Extension
+- Mbstring PHP Extension
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Tokenizer PHP Extension
+- XML PHP Extension
+
+### Installation
+1. Clone GitHub repo for this project locally
+```bash
+$ git clone https://github.com/dibaliqaja/larashop-test.git
+```
+2. Change directory in project which already clone
+```bash
+$ cd larashop-test
+```
+3. Install Composer dependencies
+```bash
+$ composer install
+```
+4. Install NPM dependencies
+```bash
+$ npm install
+```
+5. Create a copy of your .env file
+```bash
+$ cp .env.example .env
+```
+6. Generate an app encryption key
+```bash
+$ php artisan key:generate
+```
+7. Create an empty database for our application
+8. In the .env file, add database information to allow Laravel to connect to the database
+9. Migrate the database
+```bash
+$ php artisan migrate
+```
+10. Seed the database
+```bash
+$ php artisan db:seed
+```
+10. Running project
+```bash
+$ php artisan serve
+```
+
+### User Credentials in Seeder
+
+**Admin:** admin@larashop.net  
+**Password:** 11111111
+
+**User:** adi@larashop.net
+**Password:** 1111111
+<br>
+--or--
+<br>
+Register yourself with your data for customer
+
+### Screenshots
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
