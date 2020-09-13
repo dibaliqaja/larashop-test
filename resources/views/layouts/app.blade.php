@@ -49,12 +49,34 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                @php
+                                    $order = \App\Order::where('user_id', Auth::user()->id)->where('status', "CART")->first();
+                                    if (!empty($order)) {
+                                        $notif = \App\ProductOrder::where('order_id', $order->id)->count();
+                                    } else {
+                                        $notif = 0;
+                                    }
+                                @endphp
+                                <a class="nav-link" href="{{ route('cart') }}"><strong>Cart</strong> <span class="badge badge-primary">{{ $notif }}</span></a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if (Auth::user()->role == 'ADMIN')
+                                        <a class="dropdown-item" href="{{ route('products.index') }}">
+                                            Data Products
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('orders.index') }}">
+                                            Data Orders
+                                        </a>
+                                    @endif
+                                    <a class="dropdown-item" href="{{ route('ordered') }}">
+                                        Order History
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

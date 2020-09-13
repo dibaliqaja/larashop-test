@@ -15,6 +15,8 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    <br>
+                    <a href="/" class="btn btn-primary mt-3">Shopping</a>
                 </div>
             </div>
         </div>

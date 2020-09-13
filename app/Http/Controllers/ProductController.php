@@ -4,9 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function($request, $next) {
+            if (Gate::allows('manage-products')) return $next($request);
+            abort(403, "You do not have access to this page");
+        });
+    }
+
     /**
      * Display a listing of the resource.
      *
